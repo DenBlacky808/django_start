@@ -12,15 +12,22 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 		<link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
 	{% endblock %}
-
 	{% block js %}
 	{% endblock %}
-
 </head>
 
 <body>
+
 	<div class="container">
+        <div class="hero-white">
+            <div class="header clearfix">
+                {% block menu %}
+                {% endblock %}
+            </div>
+        </div>
         {% block content %}
+
+
         {% endblock %}
 	</div>
 

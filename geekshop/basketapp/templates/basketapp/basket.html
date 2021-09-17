@@ -1,0 +1,16 @@
+{% extends 'basketapp/base.html' %}
+{% load static %}
+{% block css %}
+{% endblock %}
+{% block js %}
+
+{% endblock %}
+<div class="basket_container">
+
+    {% block content %}
+        <div class="basket_list">
+            {% include 'basketapp/includes/inc_basket_list.html' %}
+        </div>
+
+    {% endblock %}
+</div>
