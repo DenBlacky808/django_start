@@ -1,5 +1,4 @@
 {% block menu %}
-    <div class="header clearfix">
         <a href="{% url 'main' %}" class="logo"></a>
         <ul class="menu">
             <li>
@@ -10,8 +9,8 @@
                 </a>
             </li>
             <li>
-                <a href="{% url 'products' %}" class="{% if request.resolver_match.url_name == 'products' %}
-                    active
+                <a href="{% url 'products:index' %}" class="{% if request.resolver_match.url_name == 'index' %}
+                   active
                     {% endif %}">
                 продукты
                 </a>
@@ -23,7 +22,30 @@
                 контакты
                 </a>
             </li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'auth:edit' %}">
+                    {{ user.first_name|default:'Пользователь' }}
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                {% if user.is_authenticated %}
+                  <a href="{% url 'auth:logout' %}">выйти</a>
+                {% else %}
+                  <a href="{% url 'auth:login' %}">войти</a>
+                {% endif %}
+            </li>
+
         </ul>
-        <a href="#" class="search"></a>
-    </div>
+                <a href="#" class="search"></a>
+                <a href="{% url 'basket:view' %}" class="basket">
+                  <span>
+                    {% if basket %}
+                        {{ basket.0.total_cost|floatformat:0 }} руб
+                        ({{ basket.0.total_quantity }} шт)
+                    {% endif %}
+                  </span>
+                </a>
+
 {% endblock %}
